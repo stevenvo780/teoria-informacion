@@ -97,18 +97,23 @@ def run_complete_experiment(iterations=100, noise_level=0.1):
     return list(behavior_log1), list(behavior_log2)
 
 
-iterations = 100
-behavior_log1, behavior_log2 = run_complete_experiment(iterations, 0.1)
-time1, behavior1, _ = zip(*behavior_log1)
-time2, behavior2, _ = zip(*behavior_log2)
-mi = mutual_information(behavior1, behavior2)
-plt.figure(figsize=(12, 6))
-plt.plot(time1, behavior1, label=f'Agent 1', marker='o')
-plt.plot(time2, behavior2, label=f'Agent 2', marker='x')
-plt.xlabel('Time Step')
-plt.ylabel('Behavior Level')
-plt.title(
-    f'Complete Experiment Considering All Aspects (Mutual Information: {mi:.2f})')
-plt.legend()
-plt.grid(True)
-plt.show()
+def main():
+    iterations = 100
+    behavior_log1, behavior_log2 = run_complete_experiment(iterations, 0.1)
+    time1, behavior1, _ = zip(*behavior_log1)
+    time2, behavior2, _ = zip(*behavior_log2)
+    mi = mutual_information(behavior1, behavior2)
+    plt.figure(figsize=(12, 6))
+    plt.plot(time1, behavior1, label=f'Agent 1', marker='o')
+    plt.plot(time2, behavior2, label=f'Agent 2', marker='x')
+    plt.xlabel('Time Step')
+    plt.ylabel('Behavior Level')
+    plt.title(
+        f'Complete Experiment Considering All Aspects (Mutual Information: {mi:.2f})')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+
+if __name__ == '__main__':
+    main()
